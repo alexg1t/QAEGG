@@ -123,7 +123,15 @@ if (id) {
 function changeSubtotal(event){
   const quantity = parseInt(event.target.value, 10);
   const product = products.find((each) => each.id === parseInt(id, 10));
-  const subtotal = product.price * quantity;
+  console.log(quantity)
+  let subtotal=0;
+  if(!isNaN(quantity) ){
+    subtotal = product.price * quantity;
+  }
+  else{
+    subtotal=product.price;
+  }
+  console.log(subtotal)
   const priceSelector = document.querySelector("#price");
   priceSelector.innerHTML = `$${subtotal}`;
 }

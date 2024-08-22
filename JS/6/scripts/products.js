@@ -1,6 +1,6 @@
 // products.js
 class Product {
-    constructor(id, title, description, price, discount, image, taxPolicy) {
+    constructor(id, title, description, price, discount, image, taxPolicy,colors) {
       this.id = id;                   // Identificador único del producto
       this.title = title;             // Título del producto
       this.description = description; // Descripción breve del producto
@@ -8,6 +8,7 @@ class Product {
       this.discount = discount;       // Descuento aplicado al producto
       this.image = image;             // URL de la imagen del producto
       this.taxPolicy = taxPolicy;     // Información sobre impuestos y políticas
+      this.colors=colors;
     }
   }
   const product1 = new Product(
@@ -17,7 +18,8 @@ class Product {
     900000,
     "50% Off",
     "https://i.postimg.cc/kX8PKZpq/ipad2.jpg",
-    "Incluye impuesto País y percepción AFIP"
+    "Incluye impuesto País y percepción AFIP",
+    ["azul","rojo"]
   );
   
   const product2 = new Product(
@@ -27,7 +29,8 @@ class Product {
     1400000,
     "30% Off",
     "https://i.postimg.cc/kX8PKZpq/ipad2.jpg",
-    "Incluye impuesto País y percepción AFIP"
+    "Incluye impuesto País y percepción AFIP",
+    ["azul","rojo"]
   );
   
   const product3 = new Product(
@@ -37,7 +40,8 @@ class Product {
     1200000,
     "20% Off",
     "https://i.postimg.cc/kX8PKZpq/ipad2.jpg",
-    "Incluye impuesto País y percepción AFIP"
+    "Incluye impuesto País y percepción AFIP",
+    ["azul","rojo"]
   );
   
   const product4 = new Product(
@@ -47,7 +51,8 @@ class Product {
     400000,
     "15% Off",
     "https://i.postimg.cc/kX8PKZpq/ipad2.jpg",
-    "Incluye impuesto País y percepción AFIP"
+    "Incluye impuesto País y percepción AFIP",
+    ["azul","rnegro"]
   );
   
   const product5 = new Product(
@@ -57,7 +62,8 @@ class Product {
     300000,
     "25% Off",
     "https://i.postimg.cc/kX8PKZpq/ipad2.jpg",
-    "Incluye impuesto País y percepción AFIP"
+    "Incluye impuesto País y percepción AFIP",
+    ["azul","rojo"]
   );
   
   const product6 = new Product(
@@ -67,7 +73,8 @@ class Product {
     250000,
     "10% Off",
     "https://i.postimg.cc/kX8PKZpq/ipad2.jpg",
-    "Incluye impuesto País y percepción AFIP"
+    "Incluye impuesto País y percepción AFIP",
+    ["azul","rojo"]
   );
   
 

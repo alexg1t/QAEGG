@@ -3,7 +3,8 @@ const query = location.search;
 const params = new URLSearchParams(query);
 const id = params.get('id');
 console.log(id);
-
+//PARA PROBAR EN CAAD REFRESH
+localStorage.removeItem("cart");
 function printDetails(id) {
   // Buscar el producto por ID
   const product = products.find((each) => each.id === parseInt(id, 10)); // Convertir a número
@@ -44,7 +45,7 @@ function printDetails(id) {
           <label class="product-label" for="color">Color</label>
           <select
             class="product-select"
-            id="color"
+            id="color-${product.id}"
             type="text"
             placeholder="Selecciona un color"
           >
@@ -88,8 +89,8 @@ function printDetails(id) {
         </ul>
         <div class="checkout-process">
           <div class="top">
-            <input type="number" min="1" value="1" onchange="changeSubtotal(event)" />
-            <button type="button" class="cart-btn">
+            <input id="quantity-${product.id}" type="number" min="1" value="1" onchange="changeSubtotal(event)" />
+            <button type="button" class="cart-btn" onclick="saveProduct(${product.id})">
               Añadir al Carrito
             </button>
           </div>
@@ -134,4 +135,38 @@ function changeSubtotal(event){
   console.log(subtotal)
   const priceSelector = document.querySelector("#price");
   priceSelector.innerHTML = `$${subtotal}`;
+}
+
+//SAVE PRODUCT
+
+function saveProduct(id) {
+  const found = products.find((each) => each.id === id);
+  const product = {
+    id: id,
+    title: found.title,
+    price: found.price,
+    image: found.image,
+    color: document.querySelector("#color-" + id).value,
+    quantity: document.querySelector("#quantity-" + id).value,
+  };
+  const stringifyProduct = JSON.stringify(product);
+  console.log(stringifyProduct);
+  localStorage.setItem("cart", stringifyProduct);
+  // const cart = localStorage.getItem("cart");
+  // let cartArray = [];
+  // if (cart) {
+  //   // Si la clave existe, parsear el array existente
+  //   cartArray = JSON.parse(cart);
+  //   cartArray.push(product);
+    
+  // }
+  // else{
+  //   cartArray.push(product);
+  // }
+  
+  
+  // console.log(cartArray)
+  // const stringifyProducts = JSON.stringify(cartArray);
+  // console.log(stringifyProducts)
+  // localStorage.setItem("cart", stringifyProducts);
 }

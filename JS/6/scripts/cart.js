@@ -54,10 +54,12 @@ function createTotalTemplate(arrayOfProducts) {
     (each) => (total = total + each.price * each.quantity)
   );
   return `
-     <h4 class="total-title"> Resumen del pedido </h4>
-     <p class="total-p">Subtotal $ ${total}</p>
-     <h3>Incluye impuesto PAIS y percepción</h3>
-     <button id="buy" class="card-btn" type="button">COMPRAR</button>
+<div class="resumen-pedido">
+    <h4 class="total-title"> Resumen del pedido </h4>
+    <p class="total-p">Subtotal <span>$ ${total}</span></p>
+    <h3>Incluye impuesto PAIS y percepción AFIP</h3>
+    <button id="buy" class="card-btn" type="button">Finaliza tu compra</button>
+</div>
   `;
 }
 

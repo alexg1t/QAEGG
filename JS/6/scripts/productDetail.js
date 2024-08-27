@@ -4,7 +4,7 @@ const params = new URLSearchParams(query);
 const id = params.get('id');
 console.log(id);
 //PARA PROBAR EN CAAD REFRESH
-localStorage.removeItem("cart");
+
 function printDetails(id) {
   // Buscar el producto por ID
   const product = products.find((each) => each.id === parseInt(id, 10)); // Convertir a número
@@ -140,33 +140,32 @@ function changeSubtotal(event){
 //SAVE PRODUCT
 
 function saveProduct(id) {
-  const found = products.find((each) => each.id === id);
-  const product = {
-    id: id,
-    title: found.title,
-    price: found.price,
-    image: found.image,
-    color: document.querySelector("#color-" + id).value,
-    quantity: document.querySelector("#quantity-" + id).value,
-  };
-  const stringifyProduct = JSON.stringify(product);
-  console.log(stringifyProduct);
-  localStorage.setItem("cart", stringifyProduct);
-  // const cart = localStorage.getItem("cart");
-  // let cartArray = [];
-  // if (cart) {
-  //   // Si la clave existe, parsear el array existente
-  //   cartArray = JSON.parse(cart);
-  //   cartArray.push(product);
-    
-  // }
-  // else{
-  //   cartArray.push(product);
-  // }
-  
-  
-  // console.log(cartArray)
-  // const stringifyProducts = JSON.stringify(cartArray);
-  // console.log(stringifyProducts)
-  // localStorage.setItem("cart", stringifyProducts);
+
+    // Obtener productos actuales del carrito o crear un array vacío
+    let cartArray = JSON.parse(localStorage.getItem("cart")) || [];
+    console.log(cartArray)
+    // Si el cartArray no es un array (en caso de haber un error anterior)
+    if (!Array.isArray(cartArray)) {
+        cartArray = [cartArray];
+    }
+
+    // Buscar el producto que se va a añadir
+    const found = products.find((each) => each.id === id);
+
+    // Crear el objeto de producto a agregar
+    const product = {
+        id: id,
+        title: found.title,
+        price: found.price,
+        image: found.image, 
+        description:found.description,
+        color: document.querySelector("#color-" + id).value,
+        quantity: document.querySelector("#quantity-" + id).value,
+    };
+
+    // Añadir el producto al array del carrito
+    cartArray.push(product);
+
+    // Guardar el array actualizado en el localStorage
+    localStorage.setItem("cart", JSON.stringify(cartArray));
 }
